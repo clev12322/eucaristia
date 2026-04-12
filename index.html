@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Primeira Comunhão de Evely missu e Theodoro</title>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Poppins:wght@300;400;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+      color: #2c3e50;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    /* Header */
+    header {
+      background: linear-gradient(135deg, rgba(255,255,255,0.95) 0%, rgba(248, 246, 242, 0.9) 100%);
+      backdrop-filter: blur(20px);
+      padding: 80px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    header::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="grain" width="100" height="100" patternUnits="userSpaceOnUse"><circle cx="25" cy="25" r="1" fill="rgba(255,255,255,0.1)"/><circle cx="75" cy="75" r="1.5" fill="rgba(255,255,255,0.05)"/></pattern></defs><rect width="100" height="100" fill="url(%23grain)"/></svg>');
+      pointer-events: none;
+    }
+
+    .header-content {
+      position: relative;
+      z-index: 2;
+      max-width: 800px;
+      margin: 0 auto;
+      text-align: center;
+      animation: fadeInUp 1.2s ease-out;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2.5rem, 5vw, 4rem);
+      background: linear-gradient(135deg, #d4af37, #f1c40f, #f39c12);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      margin-bottom: 10px;
+      text-shadow: 0 4px 20px rgba(212, 175, 55, 0.3);
+    }
+
+    .date {
+      font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+      color: #7f8c8d;
+      font-weight: 300;
+      margin-bottom: 30px;
+      letter-spacing: 2px;
+    }
+
+    .btn {
+      display: inline-block;
+	  margin-top: 15px;
+      padding: 12px 25px;
+      background: linear-gradient(135deg, #d4af37, #f1c40f);
+      color: white;
+      text-decoration: none;
+      border-radius: 50px;
+      font-weight: 600;
+      font-size: 16px;
+      box-shadow: 0 10px 30px rgba(212, 175, 55, 0.4);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 15px 40px rgba(212, 175, 55, 0.6);
+    }
+
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+      transition: left 0.5s;
+    }
+
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    /* Sections */
+    section {
+      padding: 80px 20px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(2rem, 4vw, 2.8rem);
+      text-align: center;
+      margin-bottom: 50px;
+      background: linear-gradient(135deg, #2c3e50, #34495e);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+      position: relative;
+    }
+
+    h2::after {
+      content: '';
+      position: absolute;
+      bottom: -10px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 80px;
+      height: 4px;
+      background: linear-gradient(135deg, #d4af37, #f1c40f);
+      border-radius: 2px;
+    }
+
+    /* Historia */
+    #historia {
+      background: rgba(255,255,255,0.6);
+      backdrop-filter: blur(20px);
+      border-radius: 30px;
+      margin: 40px auto;
+      max-width: 800px;
+      padding: 60px 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+    }
+
+    #historia p {
+      font-size: 1.3rem;
+      text-align: center;
+      color: #2c3e50;
+      font-weight: 300;
+      line-height: 1.8;
+    }
+
+    /* Galeria */
+    .galeria {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      padding: 20px 0;
+    }
+
+    .galeria img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+      border-radius: 10px;
+	  Scroll-snap-align: center;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+      transition: all 0.4s ease;
+      cursor: pointer;
+    }
+
+    .galeria img:hover {
+      transform: scale(1.05) rotate(1deg);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.3);
+    }
+
+    /* Video */
+    .video-container {
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(20px);
+      border-radius: 30px;
+      padding: 40px;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.1);
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    video {
+      width: 100%;
+      border-radius: 20px;
+	  max-width: 400px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    }
+
+    /* Timeline */
+    .timeline {
+      max-width: 600px;
+      margin: 0 auto;
+    }
+
+    .timeline-item {
+      background: rgba(255,255,255,0.9);
+      backdrop-filter: blur(20px);
+      margin-bottom: 25px;
+      padding: 30px;
+      border-radius: 20px;
+      position: relative;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+      transition: all 0.3s ease;
+      border-left: 5px solid transparent;
+    }
+
+    .timeline-item:nth-child(odd) {
+      border-left-color: #d4af37;
+      transform: translateX(20px);
+    }
+
+    .timeline-item:nth-child(even) {
+      border-left-color: #f1c40f;
+      transform: translateX(-20px);
+    }
+
+    .timeline-item:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 20px 50px rgba(0,0,0,0.2);
+    }
+
+    /* Mensagens */
+    .mensagens {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 25px;
+      margin-top: 40px;
+    }
+
+    .mensagem {
+      background: linear-gradient(135deg, rgba(255,255,255,0.9), rgba(248, 246, 242, 0.8));
+      backdrop-filter: blur(20px);
+      padding: 30px;
+      border-radius: 20px;
+      box-shadow: 0 15px 40px rgba(0,0,0,0.1);
+      font-style: italic;
+      font-size: 1.1rem;
+      color: #2c3e50;
+      position: relative;
+      transition: all 0.3s ease;
+    }
+
+    .mensagem::before {
+      content: '"';
+      font-size: 4rem;
+      color: #d4af37;
+      position: absolute;
+      top: -10px;
+      left: 20px;
+      font-family: 'Playfair Display', serif;
+    }
+
+    .mensagem:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 25px 60px rgba(0,0,0,0.2);
+    }
+
+    /* Footer */
+    footer {
+      background: linear-gradient(135deg, #2c3e50, #34495e);
+      color: white;
+      padding: 50px 20px;
+      text-align: center;
+      font-size: 1.1rem;
+      font-weight: 300;
+    }
+
+    /* Animações */
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(50px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-10px); }
+    }
+
+    .float {
+      animation: float 3s ease-in-out infinite;
+    }
+
+    /* Responsivo */
+    @media (max-width: 768px) {
+      section {
+        padding: 60px 15px;
+      }
+      
+      #historia {
+        margin: 20px 10px;
+        padding: 40px 25px;
+      }
+      
+      .timeline-item {
+        transform: none !important;
+      }
+    }
+
+    /* Scroll suave */
+    html {
+      scroll-behavior: smooth;
+    }
+
+    /* Revelação ao scroll */
+    .reveal {
+      opacity: 0;
+      transform: translateY(50px);
+      transition: all 0.8s ease;
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  </style>
+</head>
+
+<body>
+  <header>
+    <div class="header-content">
+      <h1><i class="fas fa-dove"></i> Primeira Comunhão de Evely missu e theodoro  <i class="fas fa-dove"></i></h1>
+      <div class="date">12 de Maio de 2026</div>
+      <a href="#historia" class="btn"><i class="fas fa-heart"></i> Ver História Completa</a>
+    </div>
+  </header>
+
+  <section id="historia" class="reveal">
+    <h2><i class="fas fa-pray"></i> Um Momento Especial</h2>
+    <div>
+      <p>
+        Hoje recebo Jesus pela primeira vez no meu coração. 
+        <br><strong>Um dia de fé, amor e gratidão</strong> que ficará para sempre na minha memória.
+      </p>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <h2><i class="fas fa-camera"></i> 📸 Galeria de Fotos</h2>
+    <div class="galeria">
+      <img src="imagem/missu1.jpeg" alt="Foto 1" loading="lazy">
+      <img src="imagem/missu2.jpeg" alt="Foto 2" loading="lazy">
+      <img src="imagem/missu3.jpeg" alt="Foto 3" loading="lazy">
+	  <img src="imagem/teo1.jpeg" alt="Foto 3" loading="lazy">
+    </div>
+  </section>
+
+  <section class="reveal">
+    <h2><i class="fas fa-video"></i> 🎥 Vídeos Memoráveis</h2>
+    <div class="video-container">
+      <video controls preload="metadata">
+        <source src="video/videoteo.mp4" type="video/mp4">
+        Seu navegador não suporta vídeo.
+      </video>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <h2><i class="fas fa-clock"></i> 📜 Linha do Tempo</h2>
+    <div class="timeline">
+      <div class="timeline-item">
+        <i class="fas fa-sparkles" style="color: #d4af37; font-size: 1.5rem; margin-right: 15px;"></i>
+        Preparação para a cerimônia
+		
+      </div>
+      <div class="timeline-item">
+        <i class="fas fa-church" style="color: #f1c40f; font-size: 1.5rem; margin-right: 15px;"></i>
+        Momento da comunhão
+		
+      </div>
+      <div class="timeline-item">
+        <i class="fas fa-users" style="color: #d4af37; font-size: 1.5rem; margin-right: 15px;"></i>
+        Fotos com a família
+		
+      </div>
+    </div>
+  </section>
+
+  <section class="reveal">
+    <h2><i class="fas fa-heart"></i> 💬 Mensagens Especiais</h2>
+    <div class="mensagens">
+      <div class="mensagem">
+        Que Deus ilumine sempre seu caminho!
+      </div>
+      <div class="mensagem">
+        Parabéns por esse momento tão especial!
+      </div>
+      <div class="mensagem">
+        Que a paz de Jesus esteja sempre contigo!
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div style="animation: fadeInUp 2s ease-out 1s both;">
+      <i class="fas fa-pray" style="font-size: 2rem; margin-bottom: 20px; display: block; color: #d4af37;"></i>
+      <p>🙏 <strong>Que a fé guie seus passos para sempre.</strong></p>
+    </div>
+  </footer>
+
+  <script>
+    // Scroll suave para seções
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+      anchor.addEventListener('click', function (e) {
+        e.preventDefault();
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          target.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }
+      });
+    });
+
+    // Animação de revelação ao scroll
+    function revealOnScroll() {
+      const reveals = document.querySelectorAll('.reveal');
+      reveals.forEach((reveal, index) => {
+        const windowHeight = window.innerHeight;
+        const elementTop = reveal.getBoundingClientRect().top;
+        const elementVisible = 150;
+
+        if (elementTop < windowHeight - elementVisible) {
+          setTimeout(() => {
+            reveal.classList.add('active');
+          }, index * 200);
+        }
+      });
+    }
+
+    window.addEventListener('scroll', revealOnScroll);
+    revealOnScroll(); // Executa na carga inicial
+
+    // Efeito parallax no header
+    window.addEventListener('scroll', () => {
+      const scrolled = window.pageYOffset;
+      const header = document.querySelector('header');
+      header.style.transform = `translateY(${scrolled * 0.5}px)`;
+    });
+  </script>
+</body>
+</html>
